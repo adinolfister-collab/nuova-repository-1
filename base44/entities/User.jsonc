@@ -1,0 +1,82 @@
+{
+  "properties": {
+    "role": {
+      "type": "string",
+      "description": "The role of the user in the app",
+      "enum": [
+        "admin",
+        "user"
+      ]
+    },
+    "subscription_status": {
+      "type": "string",
+      "description": "Access level: synced Stripe status, or a Founder-campaign grant ('lifetime' / 'three_months').",
+      "enum": [
+        "none",
+        "trialing",
+        "active",
+        "past_due",
+        "canceled",
+        "lifetime",
+        "three_months"
+      ]
+    },
+    "subscription_trial_end": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "subscription_period_end": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "subscription_cancel_at_period_end": {
+      "type": "boolean"
+    },
+    "promo_start_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Inizio della prova gratuita in-app di 14 giorni per i moduli premium"
+    },
+    "free_until": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Per i Founder 51-250: scadenza dei 3 mesi gratuiti"
+    },
+    "founder_rank": {
+      "type": "number",
+      "description": "Posizione in graduatoria della campagna Founder (null se non aderente)"
+    },
+    "referrer_id": {
+      "type": "string",
+      "description": "Id dell'utente che ha invitato questo utente tramite il link referral della campagna 'Invita un amico'. Impostato una sola volta alla conferma della registrazione (idempotente)."
+    },
+    "ai_messages_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Contatore messaggi AI gratuiti inviati nel mese corrente"
+    },
+    "ai_messages_month": {
+      "type": "string",
+      "description": "Mese di riferimento del contatore AI (formato YYYY-MM)"
+    },
+    "notifications_enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Consenso dell'utente a ricevere notifiche push native (promemoria terapie, aggiornamenti community)"
+    },
+    "lang": {
+      "type": "string",
+      "enum": [
+        "it",
+        "en"
+      ],
+      "default": "it",
+      "description": "Lingua preferita dall'utente, usata dai backend per localizzare notifiche, email e report (fallback 'it')"
+    }
+  },
+  "required": [
+    "role"
+  ],
+  "name": "User",
+  "type": "object"
+}

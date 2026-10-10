@@ -1,0 +1,6 @@
+{
+  "name": "IBD Care",
+  "description": "Diario clinico, tracciamento alimentare con foto scanner e monitoraggio sintomi per Morbo di Crohn e Colite Ulcerosa con 45 giorni di prova gratuita.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

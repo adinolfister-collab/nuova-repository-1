@@ -1,0 +1,60 @@
+{
+  "name": "AffiliateOffer",
+  "type": "object",
+  "properties": {
+    "product_id": {
+      "type": "string",
+      "description": "ID del Product a cui l'offerta e' collegata"
+    },
+    "store_name": {
+      "type": "string"
+    },
+    "store_price": {
+      "type": "number"
+    },
+    "affiliate_url": {
+      "type": "string"
+    },
+    "image_url": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descrizione opzionale dell'offerta"
+    },
+    "source": {
+      "type": "string",
+      "description": "Origine offerta: 'awin' (importata dal feed Awin) o 'manual' (inserita a mano)"
+    },
+    "order": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "product_id",
+    "store_name",
+    "store_price",
+    "affiliate_url"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

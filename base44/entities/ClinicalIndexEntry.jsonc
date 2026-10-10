@@ -1,0 +1,78 @@
+{
+  "name": "ClinicalIndexEntry",
+  "type": "object",
+  "properties": {
+    "index_type": {
+      "type": "string",
+      "enum": [
+        "hbi",
+        "partial_mayo"
+      ],
+      "description": "Tipo di indice clinico: hbi (Harvey-Bradshaw, Morbo di Crohn) o partial_mayo (Partial Mayo Score, Colite Ulcerosa)"
+    },
+    "score": {
+      "type": "number",
+      "description": "Punteggio totale calcolato"
+    },
+    "severity_label": {
+      "type": "string",
+      "enum": [
+        "remissione",
+        "lieve",
+        "moderata",
+        "grave"
+      ],
+      "description": "Etichetta di severita' derivata dal punteggio"
+    },
+    "entry_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Data di riferimento del calcolo"
+    },
+    "answers": {
+      "type": "object",
+      "description": "Oggetto con i punteggi dei singoli parametri (es. wellbeing, abdominal_pain, liquid_stools, abdominal_mass per HBI; stool_frequency, rectal_bleeding, global_assessment per Partial Mayo)"
+    },
+    "complications": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "artralgia",
+          "uveite",
+          "eritema_nodoso",
+          "afte_orali",
+          "ascessi",
+          "fistole",
+          "fessurazioni"
+        ]
+      },
+      "description": "Complicanze spuntate (solo HBI); ogni elemento vale 1 punto"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descrizione opzionale della rilevazione",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "index_type",
+    "score",
+    "severity_label",
+    "entry_date"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "name": "ConversionEvent",
+  "type": "object",
+  "properties": {
+    "event_name": {
+      "type": "string"
+    },
+    "feature": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descrizione opzionale dell'evento di conversione"
+    },
+    "source": {
+      "type": "string",
+      "description": "Azione: 'used' (funzione usata), 'demo' (interazione demo ospite), 'blocked' (tentativo bloccato da paywall/registrazione)"
+    },
+    "is_guest": {
+      "type": "boolean",
+      "default": false,
+      "description": "True per eventi generati da visitatori anonimi (demo mode), false per utenti autenticati"
+    },
+    "session_id": {
+      "type": "string",
+      "description": "Id sessione anonimo (localStorage, come PageView) per gli ospiti"
+    },
+    "visitor_id": {
+      "type": "string",
+      "description": "Id visitatore persistente (localStorage, come PageView) per gli ospiti"
+    },
+    "path": {
+      "type": "string",
+      "description": "Percorso della pagina in cui e' avvenuta l'azione (facoltativo)"
+    }
+  },
+  "required": [
+    "event_name",
+    "feature"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

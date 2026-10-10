@@ -1,0 +1,101 @@
+{
+  "name": "Guide",
+  "type": "object",
+  "properties": {
+    "language": {
+      "type": "string",
+      "enum": [
+        "it",
+        "en"
+      ],
+      "default": "it",
+      "description": "Lingua della guida"
+    },
+    "title": {
+      "type": "string",
+      "description": "Titolo H1 visibile"
+    },
+    "slug": {
+      "type": "string",
+      "description": "Slug scelto dall'amministratore, univoco per lingua"
+    },
+    "seo_title": {
+      "type": "string",
+      "description": "Title SEO"
+    },
+    "meta_description": {
+      "type": "string",
+      "description": "Meta description"
+    },
+    "content": {
+      "type": "string",
+      "description": "Corpo in Markdown"
+    },
+    "faq": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string"
+          },
+          "answer": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "FAQ visibili nella pagina e usate per il JSON-LD"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "published",
+        "withdrawn"
+      ],
+      "default": "draft"
+    },
+    "translation_slug": {
+      "type": "string",
+      "description": "Slug della versione tradotta nell'altra lingua (facoltativo)"
+    },
+    "published_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "title",
+    "slug",
+    "language"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "data.status": "published"
+        }
+      ]
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

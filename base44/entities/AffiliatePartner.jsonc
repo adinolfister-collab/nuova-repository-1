@@ -1,0 +1,65 @@
+{
+  "name": "AffiliatePartner",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "nutrizione",
+        "stomia",
+        "comfort",
+        "igiene",
+        "farmaci",
+        "integratori",
+        "dispositivi",
+        "cura_persona",
+        "alimentazione_speciale"
+      ]
+    },
+    "affiliate_url": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descrizione opzionale del partner"
+    },
+    "source": {
+      "type": "string",
+      "description": "Origine partner: 'mylead' (importato via API) o 'manual'",
+      "default": "mylead"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "order": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "name",
+    "category",
+    "affiliate_url"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

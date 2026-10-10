@@ -1,0 +1,54 @@
+{
+  "name": "ActivityEntry",
+  "type": "object",
+  "properties": {
+    "entry_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Data di riferimento dell'attivita' (YYYY-MM-DD)"
+    },
+    "steps": {
+      "type": "number",
+      "description": "Numero di passi nella giornata"
+    },
+    "kcal_expended": {
+      "type": "number",
+      "description": "Calorie consumate nell'attivita' (kcal)"
+    },
+    "distance_m": {
+      "type": "number",
+      "description": "Distanza percorsa in metri"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "googlefit",
+        "manual"
+      ],
+      "default": "googlefit",
+      "description": "Origine del dato: googlefit (sincronizzato) o manual"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descrizione opzionale dell'attivita'",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "entry_date"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

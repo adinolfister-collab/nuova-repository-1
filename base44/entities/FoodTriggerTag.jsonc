@@ -1,0 +1,40 @@
+{
+  "name": "FoodTriggerTag",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Nome del tag trigger personalizzato (es. lattosio, caffe, pomodoro)"
+    },
+    "color": {
+      "type": "string",
+      "description": "Colore opzionale del tag (hex)"
+    },
+    "order": {
+      "type": "number",
+      "description": "Ordinamento opzionale del tag"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descrizione opzionale del tag",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "name": "ServiceLocation",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "centro_ibd",
+        "bagno_pubblico",
+        "farmacia",
+        "pronto_soccorso"
+      ]
+    },
+    "country": {
+      "type": "string",
+      "description": "Nazione del centro o servizio"
+    },
+    "region": {
+      "type": "string",
+      "description": "Regione, stato o provincia"
+    },
+    "city": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "lat": {
+      "type": "number"
+    },
+    "lng": {
+      "type": "number"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "hours": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "ecco",
+        "manual"
+      ],
+      "default": "manual",
+      "description": "Origine del record: ecco (registro ECCO E-QUALITY) o manual"
+    },
+    "geocoded": {
+      "type": "boolean",
+      "default": false,
+      "description": "True se le coordinate sono state precisate a livello citt\u00e0 via Nominatim"
+    }
+  },
+  "required": [
+    "name",
+    "type",
+    "lat",
+    "lng"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

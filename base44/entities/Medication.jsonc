@@ -1,0 +1,62 @@
+{
+  "name": "Medication",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "farmaco_orale",
+        "iniezione",
+        "biologico",
+        "integratore"
+      ]
+    },
+    "dosage": {
+      "type": "string"
+    },
+    "frequency": {
+      "type": "string",
+      "enum": [
+        "giornaliero",
+        "settimanale",
+        "bisettimanale",
+        "mensile",
+        "al_bisogno"
+      ]
+    },
+    "times": {
+      "type": "string"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "type"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "name": "CampaignSignup",
+  "type": "object",
+  "properties": {
+    "campaign": {
+      "type": "string",
+      "enum": [
+        "founders",
+        "invite_a_friend"
+      ],
+      "default": "founders",
+      "description": "Campagna di riferimento: 'founders' (10 slot lifetime, chiusa al raggiungimento) o 'invite_a_friend' (referral virale senza limiti)"
+    },
+    "referrer_id": {
+      "type": "string",
+      "description": "Per la campagna invite_a_friend: id dell'utente che ha condiviso il link di referral (il referrer). Permette al referrer di ritrovare il proprio record di progresso, creato server-side dal backend processInviteReferral."
+    },
+    "slot_type": {
+      "type": "string",
+      "enum": [
+        "lifetime",
+        "three_months"
+      ]
+    },
+    "rank": {
+      "type": "number"
+    },
+    "confirmed": {
+      "type": "boolean",
+      "default": false
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descrizione opzionale dell'iscrizione alla campagna",
+      "maxLength": 1000
+    },
+    "first_message_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "referral_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Numero di iscritti giunti tramite il link di referral personale di questo founder/ambassador"
+    }
+  },
+  "required": [
+    "campaign"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

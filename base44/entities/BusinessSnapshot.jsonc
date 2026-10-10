@@ -1,0 +1,126 @@
+{
+  "name": "BusinessSnapshot",
+  "type": "object",
+  "properties": {
+    "snapshot_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Data di riferimento dello snapshot (YYYY-MM-DD)"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "daily",
+        "manual"
+      ],
+      "description": "Origine dello snapshot: daily (workflow automatico) o manual (pulsante admin)"
+    },
+    "premium_users": {
+      "type": "number",
+      "description": "Utenti con abbonamento attivo (active/lifetime/three_months/past_due)"
+    },
+    "trial_users": {
+      "type": "number",
+      "description": "Utenti in prova gratuita (free_until futuro, non premium)"
+    },
+    "demo_users": {
+      "type": "number",
+      "description": "Visitatori anonimi attivi in demo mode (ultimi 30 gg)"
+    },
+    "cary_usage_premium_pct": {
+      "type": "number",
+      "description": "% utenti premium che hanno usato Cary (ultimi 30 gg)"
+    },
+    "cary_usage_trial_pct": {
+      "type": "number",
+      "description": "% utenti trial che hanno usato Cary (ultimi 30 gg)"
+    },
+    "cary_usage_demo_pct": {
+      "type": "number",
+      "description": "% visitatori demo che hanno usato Cary (ultimi 30 gg)"
+    },
+    "cary_adoption_pct": {
+      "type": "number",
+      "description": "% globale di adozione Cary su tutti gli utenti (premium+trial+demo)"
+    },
+    "avg_msgs_per_cary_user": {
+      "type": "number",
+      "description": "Messaggi Cary medi per utente attivo nel mese (stimato da tracking)"
+    },
+    "total_msg_credits_used": {
+      "type": "number",
+      "description": "Crediti messaggi Base44 consumati nel mese (stimato)"
+    },
+    "total_integration_credits_used": {
+      "type": "number",
+      "description": "Crediti integrazione Base44 consumati nel mese (stimato)"
+    },
+    "base44_plan": {
+      "type": "string",
+      "description": "Identificativo del piano Base44 di riferimento (free/starter/builder/pro/elite/elite_custom)"
+    },
+    "base44_plan_cost": {
+      "type": "number",
+      "description": "Costo mensile del piano Base44 di riferimento ($/mese)"
+    },
+    "msg_credits_included": {
+      "type": "number",
+      "description": "Crediti messaggi inclusi nel piano Base44 di riferimento"
+    },
+    "integration_credits_included": {
+      "type": "number",
+      "description": "Crediti integrazione inclusi nel piano Base44 di riferimento"
+    },
+    "premium_price": {
+      "type": "number",
+      "description": "Prezzo Premium simulato allo snapshot ($/mese)"
+    },
+    "estimated_monthly_revenue": {
+      "type": "number",
+      "description": "Ricavo mensile stimato (premium_users x premium_price)"
+    },
+    "estimated_monthly_cost": {
+      "type": "number",
+      "description": "Costo mensile del piano Base44 di riferimento"
+    },
+    "estimated_margin": {
+      "type": "number",
+      "description": "Margine netto mensile (ricavi - costi)"
+    },
+    "break_even_users": {
+      "type": "number",
+      "description": "Numero utenti Premium necessari per coprire il costo del piano Base44"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descrizione opzionale dello snapshot",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "snapshot_date",
+    "source"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "name": "AppCrash",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "Messaggio di errore (primi 500 caratteri)"
+    },
+    "stack": {
+      "type": "string",
+      "description": "Stack trace completo (fino a 4000 caratteri)"
+    },
+    "path": {
+      "type": "string",
+      "description": "Percorso della pagina in cui si e' verificato il crash"
+    },
+    "visitor_id": {
+      "type": "string",
+      "description": "Id visitatore persistente (localStorage, come PageView)"
+    },
+    "session_id": {
+      "type": "string",
+      "description": "Id sessione anonimo (localStorage, come PageView)"
+    },
+    "user_id": {
+      "type": "string",
+      "description": "User id se il visitatore e' loggato, vuoto per anonimi"
+    },
+    "device": {
+      "type": "string",
+      "enum": [
+        "desktop",
+        "mobile",
+        "tablet"
+      ]
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "critical",
+        "normal"
+      ],
+      "description": "critical = pagina auth o revenue, normal = altre pagine"
+    },
+    "count": {
+      "type": "number",
+      "default": 1,
+      "description": "Numero di occorrenze raggruppate (dedupe 1h)"
+    },
+    "first_seen": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_seen": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "resolved": {
+      "type": "boolean",
+      "default": false
+    },
+    "description": {
+      "type": "string",
+      "description": "Descrizione opzionale del crash",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "message",
+    "path",
+    "severity"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "name": "Feedback",
+  "type": "object",
+  "properties": {
+    "path": {
+      "type": "string",
+      "description": "Percorso della pagina valutata (es. /symptoms)"
+    },
+    "stars": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Valutazione da 1 a 5 stelle"
+    },
+    "user_id": {
+      "type": "string",
+      "description": "User id se il visitatore e' loggato, vuoto per ospiti anonimi"
+    },
+    "session_id": {
+      "type": "string",
+      "description": "Id sessione anonimo (localStorage) per gli ospiti non loggati"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descrizione opzionale del feedback",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "path",
+    "stars"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

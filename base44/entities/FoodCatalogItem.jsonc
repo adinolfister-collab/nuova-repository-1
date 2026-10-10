@@ -1,0 +1,68 @@
+{
+  "name": "FoodCatalogItem",
+  "type": "object",
+  "properties": {
+    "category": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descrizione opzionale dell'alimento"
+    },
+    "default_unit": {
+      "type": "string",
+      "enum": [
+        "g",
+        "ml",
+        "porzione",
+        "cucchiaio",
+        "tazza",
+        "fetta"
+      ]
+    },
+    "kcal": {
+      "type": "number",
+      "description": "Calorie per 100 g (o 100 ml) di alimento"
+    },
+    "proteine": {
+      "type": "number",
+      "description": "Proteine (g) per 100 g (o 100 ml) di alimento"
+    },
+    "carboidrati": {
+      "type": "number",
+      "description": "Carboidrati (g) per 100 g (o 100 ml) di alimento"
+    },
+    "portion_grams": {
+      "type": "number",
+      "description": "Peso in grammi di una porzione del singolo alimento (usato per il calcolo nutrizionale quando l'unit\u00e0 \u00e8 porzione/fetta/cucchiaio/tazza). Lasciare vuoto per il peso standard."
+    },
+    "order": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "category",
+    "name"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

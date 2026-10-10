@@ -1,0 +1,89 @@
+{
+  "name": "DirectMessage",
+  "type": "object",
+  "properties": {
+    "conversation_id": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "sender_id": {
+      "type": "string"
+    },
+    "sender_name": {
+      "type": "string"
+    },
+    "participants": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "User id dei due partecipanti (denormalizzato per RLS)"
+    },
+    "original_lang": {
+      "type": "string"
+    },
+    "translated_text": {
+      "type": "object"
+    },
+    "mentions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "shared_entry": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "symptom",
+            "meal",
+            "med",
+            "exam"
+          ]
+        },
+        "id": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "conversation_id",
+    "content",
+    "sender_id",
+    "participants"
+  ],
+  "rls": {
+    "read": {
+      "data.participants": "{{user.id}}"
+    },
+    "create": {
+      "data.participants": {
+        "$in": [
+          "{{user.id}}"
+        ]
+      }
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

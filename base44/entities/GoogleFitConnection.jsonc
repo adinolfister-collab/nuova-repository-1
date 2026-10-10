@@ -1,0 +1,51 @@
+{
+  "name": "GoogleFitConnection",
+  "type": "object",
+  "properties": {
+    "access_token": {
+      "type": "string",
+      "description": "Token di accesso Google Fit (a breve scadenza)"
+    },
+    "refresh_token": {
+      "type": "string",
+      "description": "Refresh token Google Fit per rinnovare l'accesso"
+    },
+    "token_expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Scadenza stimata dell'access token"
+    },
+    "connected_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data di prima connessione"
+    },
+    "last_sync_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Ultima sincronizzazione completata"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descrizione opzionale della connessione",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "refresh_token"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

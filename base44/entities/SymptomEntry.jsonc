@@ -1,0 +1,73 @@
+{
+  "name": "SymptomEntry",
+  "type": "object",
+  "properties": {
+    "entry_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "pain_level": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "pain_location": {
+      "type": "string",
+      "enum": [
+        "addome_inferiore",
+        "addome_superiore",
+        "fianco_dx",
+        "fianco_sx",
+        "generico",
+        "nessuno"
+      ]
+    },
+    "fatigue_level": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "bowel_movements_count": {
+      "type": "number",
+      "minimum": 0
+    },
+    "stool_consistency": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 7
+    },
+    "blood": {
+      "type": "boolean"
+    },
+    "mood": {
+      "type": "string",
+      "enum": [
+        "buono",
+        "discreto",
+        "giu",
+        "ansia",
+        "irritabile"
+      ]
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "entry_date"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

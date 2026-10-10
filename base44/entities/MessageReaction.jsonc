@@ -1,0 +1,64 @@
+{
+  "name": "MessageReaction",
+  "type": "object",
+  "properties": {
+    "message_type": {
+      "type": "string",
+      "enum": [
+        "community",
+        "dm"
+      ]
+    },
+    "message_id": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "user_name": {
+      "type": "string"
+    },
+    "emoji": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descrizione opzionale della reazione",
+      "maxLength": 1000
+    },
+    "participants": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Per reazioni DM: user id dei partecipanti (vuoto per community)"
+    }
+  },
+  "required": [
+    "message_type",
+    "message_id",
+    "user_id",
+    "emoji"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.message_type": "community"
+        },
+        {
+          "data.participants": "{{user.id}}"
+        }
+      ]
+    },
+    "create": {
+      "data.user_id": "{{user.id}}"
+    },
+    "update": {
+      "data.user_id": "{{user.id}}"
+    },
+    "delete": {
+      "data.user_id": "{{user.id}}"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "name": "NewsArticle",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "lang": {
+      "type": "string",
+      "enum": [
+        "it",
+        "en",
+        "es",
+        "fr",
+        "de",
+        "pt",
+        "ru",
+        "pl",
+        "ro",
+        "sq",
+        "zh"
+      ]
+    }
+  },
+  "required": [
+    "title",
+    "url",
+    "lang"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

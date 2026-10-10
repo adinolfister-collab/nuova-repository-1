@@ -1,0 +1,122 @@
+{
+  "name": "FoodEntry",
+  "type": "object",
+  "properties": {
+    "entry_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "meal_type": {
+      "type": "string",
+      "enum": [
+        "colazione",
+        "pranzo",
+        "cena",
+        "spuntino"
+      ]
+    },
+    "cooking_method": {
+      "type": "string",
+      "enum": [
+        "al_vapore",
+        "bollito",
+        "al_forno",
+        "piastrato",
+        "fritto",
+        "crudo"
+      ],
+      "description": "Metodo di cottura del pasto (facoltativo)"
+    },
+    "foods": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "qty": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string",
+            "enum": [
+              "g",
+              "ml",
+              "porzione",
+              "cucchiaio",
+              "tazza",
+              "fetta"
+            ]
+          },
+          "kcal": {
+            "type": "number",
+            "description": "Calorie totali dell'item (snapshot al momento della registrazione)"
+          },
+          "proteine": {
+            "type": "number",
+            "description": "Proteine totali (g) dell'item (snapshot al momento della registrazione)"
+          },
+          "carboidrati": {
+            "type": "number",
+            "description": "Carboidrati totali (g) dell'item (snapshot al momento della registrazione)"
+          },
+          "kcal_source": {
+            "type": "string",
+            "enum": [
+              "catalog",
+              "manual",
+              "cary"
+            ],
+            "description": "Origine dei valori nutrizionali dell'item"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      }
+    },
+    "trigger_tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tag trigger personalizzati spuntati dall'utente per questo pasto (nomi dei FoodTriggerTag)"
+    },
+    "reaction": {
+      "type": "string",
+      "enum": [
+        "nessuna",
+        "lieve",
+        "moderata",
+        "severa"
+      ]
+    },
+    "tolerated": {
+      "type": "boolean"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "entry_date"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "name": "SupportTicket",
+  "type": "object",
+  "properties": {
+    "subject": {
+      "type": "string",
+      "description": "Oggetto breve del ticket (facoltativo)"
+    },
+    "message": {
+      "type": "string",
+      "description": "Testo del messaggio dell'utente"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email del mittente (sempre presente, anche per ospiti non autenticati)"
+    },
+    "name": {
+      "type": "string",
+      "description": "Nome del mittente"
+    },
+    "reason": {
+      "type": "string",
+      "enum": [
+        "tecnico",
+        "account",
+        "domanda",
+        "feedback",
+        "abbonamento",
+        "altro"
+      ],
+      "default": "altro",
+      "description": "Motivo del ticket selezionato dall'utente tramite template"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "closed"
+      ],
+      "default": "open",
+      "description": "open = in attesa di risposta, closed = risposto"
+    },
+    "reply": {
+      "type": "string",
+      "description": "Risposta dell'admin"
+    },
+    "replied_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "contact",
+        "account"
+      ],
+      "default": "contact",
+      "description": "Origine del ticket: contact (form Contatti) o account (sezione Le mie richieste)"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descrizione opzionale del ticket",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "message",
+    "email",
+    "name"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "created_by_id": "{{user.id}}"
+        }
+      ]
+    },
+    "create": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

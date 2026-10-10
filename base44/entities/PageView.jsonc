@@ -1,0 +1,86 @@
+{
+  "name": "PageView",
+  "type": "object",
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "description": "Id sessione anonimo (localStorage, ruota dopo 30 min) oppure user id per i loggati"
+    },
+    "visitor_id": {
+      "type": "string",
+      "description": "Id visitatore persistente (localStorage, non ruota) per distinguere nuovi da di ritorno"
+    },
+    "section": {
+      "type": "string",
+      "enum": [
+        "Home",
+        "Diario",
+        "Negozio",
+        "Community",
+        "Abbonamento",
+        "Strumenti",
+        "Account",
+        "Altro"
+      ]
+    },
+    "path": {
+      "type": "string",
+      "description": "Percorso esatto della pagina visitata (es. /symptoms)"
+    },
+    "referrer": {
+      "type": "string",
+      "description": "Sorgente di provenienza: host esterno, 'Direct' o 'Internal'"
+    },
+    "device": {
+      "type": "string",
+      "enum": [
+        "desktop",
+        "mobile",
+        "tablet"
+      ]
+    },
+    "country": {
+      "type": "string",
+      "description": "Paese del visitatore ricavato lato server dall'IP"
+    },
+    "entered_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "duration_sec": {
+      "type": "number",
+      "description": "Durata opzionale valorizzata a posteriori (non usato in aggregazione)"
+    },
+    "user_id": {
+      "type": "string",
+      "description": "User id se il visitatore e' loggato, vuoto per anonimi"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descrizione opzionale della visita",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "session_id",
+    "section"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

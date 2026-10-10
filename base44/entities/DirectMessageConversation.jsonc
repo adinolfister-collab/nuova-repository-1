@@ -1,0 +1,88 @@
+{
+  "name": "DirectMessageConversation",
+  "type": "object",
+  "properties": {
+    "participant_a_id": {
+      "type": "string",
+      "description": "User id del richiedente"
+    },
+    "participant_b_id": {
+      "type": "string",
+      "description": "User id del destinatario"
+    },
+    "participant_a_name": {
+      "type": "string"
+    },
+    "participant_b_name": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "active",
+        "blocked"
+      ],
+      "default": "pending"
+    },
+    "last_message": {
+      "type": "string"
+    },
+    "last_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descrizione opzionale della conversazione",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "participant_a_id",
+    "participant_b_id",
+    "status"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.participant_a_id": "{{user.id}}"
+        },
+        {
+          "data.participant_b_id": "{{user.id}}"
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "data.participant_a_id": "{{user.id}}"
+        },
+        {
+          "data.participant_b_id": "{{user.id}}"
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.participant_a_id": "{{user.id}}"
+        },
+        {
+          "data.participant_b_id": "{{user.id}}"
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.participant_a_id": "{{user.id}}"
+        },
+        {
+          "data.participant_b_id": "{{user.id}}"
+        }
+      ]
+    }
+  }
+}

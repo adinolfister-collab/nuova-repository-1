@@ -1,0 +1,6 @@
+{
+  "summary":  "Piano di verifica e rilascio pre-pubblicazione dell'applicazione IBD Care:\n- Sintesi dei risultati dell'audit su build, console, routing e sicurezza\n- Allineamento delle stringhe di trial a 45 giorni (rimozione residui 30 giorni)\n- Estensione della sincronizzazione guest a farmaci e dosi\n- Aggiunta dell'azione di reset pulito dei dati di prova in Impostazioni\n- Verifica finale prima del rilascio pubblico",
+  "updatedAt":  "2026-10-10T17:05:41.532097476Z",
+  "requestFeedback":  true,
+  "userFacing":  true
+}

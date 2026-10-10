@@ -1,0 +1,63 @@
+{
+  "name": "ShareableReport",
+  "type": "object",
+  "properties": {
+    "share_id": {
+      "type": "string",
+      "description": "Token pubblico univoco usato nell'URL /report/:shareId"
+    },
+    "user_id": {
+      "type": "string",
+      "description": "Id dell'utente che ha generato il report"
+    },
+    "report_type": {
+      "type": "string",
+      "enum": [
+        "monthly",
+        "weekly"
+      ],
+      "description": "Tipo di report condiviso"
+    },
+    "report_data": {
+      "type": "object",
+      "description": "JSON con i dati del report (sintomi, pasti, statistiche)"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data di scadenza del link condivisibile"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descrizione opzionale del report",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "share_id",
+    "user_id",
+    "report_type",
+    "report_data",
+    "expires_at"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

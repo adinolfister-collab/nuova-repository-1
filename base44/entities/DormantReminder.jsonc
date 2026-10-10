@@ -1,0 +1,64 @@
+{
+  "name": "DormantReminder",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "Id dell'utente a cui e' stato inviato il promemoria"
+    },
+    "user_email": {
+      "type": "string",
+      "description": "Email dell'utente (denormalizzata al momento dell'invio)"
+    },
+    "sent_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data/ora di invio del promemoria"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "sent",
+        "failed"
+      ],
+      "default": "sent",
+      "description": "sent = email recapitata, failed = errore di invio"
+    },
+    "error": {
+      "type": "string",
+      "description": "Messaggio di errore se status = failed"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descrizione opzionale del promemoria",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "user_id",
+    "user_email",
+    "status"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "name": "MedicationDose",
+  "type": "object",
+  "properties": {
+    "medication_id": {
+      "type": "string",
+      "description": "Id della terapia (Medication) a cui si riferisce la dose"
+    },
+    "medication_name": {
+      "type": "string",
+      "description": "Nome del farmaco denormalizzato al momento della registrazione"
+    },
+    "dose_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Giorno di riferimento della dose (YYYY-MM-DD)"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "taken",
+        "skipped",
+        "missed"
+      ],
+      "description": "taken = assunto, skipped = saltato volontariamente, missed = dimenticato"
+    },
+    "scheduled_time": {
+      "type": "string",
+      "description": "Orario previsto (facoltativo, snapshot dal campo times della terapia)"
+    },
+    "taken_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "medication_id",
+    "dose_date",
+    "status"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}
